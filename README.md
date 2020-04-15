@@ -18,7 +18,7 @@
 ```python
 sudo -i
 ```
-<br>
+
 2. mettre a jour system
 ```python
 apt update
