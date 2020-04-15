@@ -23,14 +23,13 @@ sudo -i
 ```python
 apt update
 ```
-<br>
+
 3. Creation user:
 ```python
 adduser magento
 ```
-<br>
+
 4. Creation Access Keys
-<br>
 4.1 Connecter (Inscrit) sur <a href="https://marketplace.magento.com" target="_blank"><b>Magento Marketplace</b></a>.<br>
 4.2 Allez sur <b>votre compte</b> (Haut droit) et choisi <b>My Profile</b>.<br>
 4.3 Cliqur sur <b>Access Keys</b> (tab Marketplace).<br>
