@@ -24,7 +24,7 @@ sudo -i
 apt update
 ```
 <br>
-3. Creation user:<br>
+3. Creation user:
 ```python
 adduser magento
 ```
