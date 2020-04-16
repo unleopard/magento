@@ -65,10 +65,12 @@ Mettre à jour les packages
 apt-get update
 ```
 
-```
+
+`
 [Optionnel] La commande apt-cache search peut effectuer des recherches de packages (si vous avez d'autres packages a installer).<br>
 apt-cache search php7.2
-```
+`
+
 install les packages
 ```
 apt-get install php7.2 libapache2-mod-php7.2 php7.2-common php7.2-gd php7.2-mysql php7.2-curl php7.2-intl php7.2-xsl php7.2-mbstring php7.2-zip php7.2-bcmath php7.2-soap php-xdebug php-imagick
