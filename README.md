@@ -94,7 +94,7 @@ netoyage total
 apt-get purge apache2 apache2-utils apache2.2-bin apache2-common
 ```
 
-### V- Installation et configuration du PHP-FPM (<a href="https://www.php.net/manual/en/install.fpm.php">FastCGI Process Manager</a>)
+### V- Installation et configuration du PHP-FPM (<a href="https://www.php.net/manual/en/install.fpm.php ">FastCGI Process Manager</a>)
 
 ##### Installation
 
@@ -116,15 +116,15 @@ nano /etc/php/7.2/fpm/php.ini
 ```
 
 avec la commande <b>Ctrl + W</b> on fait des recherches sur le fichier, et modifier les valeurs:
--memory_limit = 2G
--max_execution_time = 3600
--max_input_time = 1800
--upload_max_filesize = 10M
--zlib.output_compression = On
+- memory_limit = 2G<br>
+- max_execution_time = 3600<br>
+- max_input_time = 1800<br>
+- upload_max_filesize = 10M<br>
+- zlib.output_compression = On<br>
 
-* Ctrl + W: recherche<br>
-* Ctrl + O: sauvegarde<br>
-* Ctrl + X: quit<br>
+* `Ctrl + W: recherche`<br>
+* `Ctrl + O: sauvegarde`<br>
+* `Ctrl + X: quit`<br>
 
 Redemarrer le service
 ```	
