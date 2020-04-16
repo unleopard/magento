@@ -38,12 +38,95 @@ adduser magento
 4.5 Ecrivez un nom de votre cle puis OK (Verrifier que vous etes toujours sur tab magento 2).<br>
 4.6 Gardez les <b>Public Key</b> et <b>Private Key</b>
 
+5. installation zip
+```
+zip
+```
 
 ### III- Installation FTP Server
 
-### IV- Installation PHP
+### IV- Installation PHP & extensions
 
-### V- Installation php extensions required
+
+
+
+Installez le package <b>software-properties-common</b> pour nous fournir le package <b>add-apt-repository</b>
+```
+apt-get install software-properties-common
+```
+
+mettre à jour votre système avec des packages non pris en charge à partir de <b>ppa</b>
+```
+add-apt-repository ppa:ondrej/php
+```
+
+Mettre à jour les packages
+```
+apt-get update
+```
+
+```
+[Optionnel] La commande apt-cache search peut effectuer des recherches de packages (si vous avez d'autres packages a installer).<br>
+apt-cache search php7.2
+```
+install les packages
+```
+apt-get install php7.2 libapache2-mod-php7.2 php7.2-common php7.2-gd php7.2-mysql php7.2-curl php7.2-intl php7.2-xsl php7.2-mbstring php7.2-zip php7.2-bcmath php7.2-soap php-xdebug php-imagick
+```
+
+afficher la versin du PHP installer
+```
+php -v
+```
+
+a la fin de l'installation, on trouves que apache est installe<br>pour le supprimer
+
+```
+apt-get remove apache2
+```
+
+netoyage total
+```
+apt-get purge apache2 apache2-utils apache2.2-bin apache2-common
+```
+
+### V- Installation et configuration du PHP-FPM ()
+
+##### Installation
+
+Install PHP 7.2 FPM:
+```
+apt-get install php7.2-fpm
+```
+
+##### Configuration
+
+prendre une copie du fichier de config
+```
+cp /etc/php/7.2/fpm/php.ini /etc/php/7.2/fpm/php.ini.backup
+```
+
+Ouvrir le fichier de config sur nano<br>
+```
+nano /etc/php/7.2/fpm/php.ini
+```
+
+avec la commande <b>Ctrl + W</b> on fait des recherches sur le fichier, et modifier les valeurs:
+-memory_limit = 2G
+-max_execution_time = 3600
+-max_input_time = 1800
+-upload_max_filesize = 10M
+-zlib.output_compression = On
+
+* Ctrl + W: recherche<br>
+* Ctrl + O: sauvegarde<br>
+* Ctrl + X: quit<br>
+
+Redemarrer le service
+```	
+service php7.2-fpm start
+```	
+	
 
 ### VI- Installation Composer
 
