@@ -40,7 +40,7 @@ adduser magento
 
 5. installation zip
 ```
-zip
+apt-get install zip
 ```
 
 ### III- Installation FTP Server
