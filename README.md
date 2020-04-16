@@ -122,9 +122,9 @@ avec la commande <b>Ctrl + W</b> on fait des recherches sur le fichier, et modif
 - upload_max_filesize = 10M<br>
 - zlib.output_compression = On<br>
 
-* `Ctrl + W: recherche`<br>
-* `Ctrl + O: sauvegarde`<br>
-* `Ctrl + X: quit`<br>
+`Ctrl + W: recherche`<br>
+`Ctrl + O: sauvegarde`<br>
+`Ctrl + X: quit`<br>
 
 Redemarrer le service
 ```	
