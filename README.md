@@ -67,9 +67,11 @@ apt-get update
 
 
 `
-[Optionnel] La commande apt-cache search peut effectuer des recherches de packages (si vous avez d'autres packages a installer).<br>
-apt-cache search php7.2
+[Optionnel] La commande apt-cache search peut effectuer des recherches de packages (si vous avez d'autres packages a installer).
 `
+```
+apt-cache search php7.2
+```
 
 install les packages
 ```
