@@ -122,6 +122,21 @@ cat /etc/vsftpd.userlist
 > *output*<br>magento
 
 ##### Tester
+```
+ftp -p localhost
+```
+> root@ubuntu-s-4vcpu-8gb-fra1-01:/home/cosmos# ftp -p localhost<br>
+Connected to localhost.<br>
+220 (vsFTPd 3.0.3)<br>
+Name (localhost:root): cosmos<br>
+331 Please specify the password.<br>
+Password:<br>
+230 Login successful.<br>
+Remote system type is UNIX.<br>
+Using binary mode to transfer files.<br>
+ftp>
+
+
 	
 
 ### IV- Installation PHP & extensions
