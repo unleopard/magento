@@ -125,10 +125,10 @@ cat /etc/vsftpd.userlist
 ```
 ftp -p localhost
 ```
-> root@ubuntu-s-4vcpu-8gb-fra1-01:/home/cosmos# ftp -p localhost<br>
+> *output*<br>root@ubuntu-s-4vcpu-8gb-fra1-01:/# ftp -p localhost<br>
 Connected to localhost.<br>
 220 (vsFTPd 3.0.3)<br>
-Name (localhost:root): cosmos<br>
+Name (localhost:root): magento<br>
 331 Please specify the password.<br>
 Password:<br>
 230 Login successful.<br>
@@ -136,7 +136,20 @@ Remote system type is UNIX.<br>
 Using binary mode to transfer files.<br>
 ftp>
 
-
+quiter la session
+```
+bye
+```
+##### securite
+Prepare a place for the SSL key to live:
+```
+mkdir /etc/ssl/private
+```
+self-signed SSL:
+```
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/vsftpd.key -out /etc/ssl/certs/vsftpd.crt
+```
+>*Output*<br>Generating a 2048 bit RSA private key<br>............................................................................+++<br>...........+++<br>writing new private key to '/etc/ssl/private/vsftpd.pem'<br>-----<br>You are about to be asked to enter information that will be incorporated<br>into your certificate request.<br>What you are about to enter is what is called a Distinguished Name or a DN.<br>There are quite a few fields but you can leave some blank<br>For some fields there will be a default value,<br>If you enter '.', the field will be left blank.<br>-----<br>Country Name (2 letter code) [AU]:MA<br>State or Province Name (full name) [Some-State]:Casablanca-Settat<br>Locality Name (eg, city) []:Casablanca<br>Organization Name (eg, company) [Internet Widgits Pty Ltd]:unleopard<br>Organizational Unit Name (eg, section) []:<br>Common Name (e.g. server FQDN or YOUR name) []: your_IP_address<br>Email Address []:<br>
 	
 
 ### IV- Installation PHP & extensions
