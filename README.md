@@ -327,16 +327,56 @@ composer --version
 
 > Do not run Composer as root/super user! See https://getcomposer.org/root for details<br>Composer version 1.10.5 2020-04-10 11:44:22
 
-### VII- Installation web server: nginx
+### VII- Installation Firewall
 
-### VIII- Installation MySql Server
+UFW is installed by default on Ubuntu. If it has been uninstalled for some reason, you can install it with:
+```
+apt install ufw
+```
 
-### IX- Installation PhpMyAdmin
+7.1. Regle 1: *refuser* tout connexion entrant, *accepter* tout connexion sortant 
 
-### X- Installation Java
+```
+ufw default deny incoming
+ufw default allow outgoing
+```
 
-### XI- Installation elasticsearch
+7.2. Regle 2: autorise la connexion SSH
+```
+ufw allow 22/tcp
+```
 
-### XII- Installation Firewall
+7.3. Regle 3: autorise la connexion FTP
+```
+ufw allow 21/tcp
+```
+
+7.4. Regle 4: autorise la connexion HTTP
+```
+ufw allow 80/tcp
+```
+
+7.5. Regle 5: autorise la connexion HTTPS
+```
+ufw allow 443/tcp
+```
+
+
+
+
+
+
+
+
+
+### VIII- Installation web server: nginx
+
+### IX- Installation MySql Server
+
+### X- Installation PhpMyAdmin
+
+### XI- Installation Java
+
+### XII- Installation elasticsearch
 
 ### XIII- Installation Magento
