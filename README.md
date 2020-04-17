@@ -21,12 +21,21 @@ sudo -i
 
 2. mettre a jour system
 ```
-apt update
+apt update && apt upgrade
 ```
 
-3. Creation user:
+3. Creation user et le dossier html
+3.1 Creation user `magento`
 ```
 adduser magento
+```
+3.2 Creation dossier `html`
+```
+mkdir /home/magento/html
+```
+3.3. modifier les droits
+```
+chown -R magento:magento /home/magento/html
 ```
 
 4. Creation Access Keys<br>
@@ -40,10 +49,79 @@ adduser magento
 
 5. installation zip
 ```
-apt-get install zip
+apt-get install zip unzip
 ```
 
 ### III- Installation FTP Server
+
+##### Installation
+installer vsftp
+```
+apt install vsftpd -y
+```
+
+
+##### Configuration
+prendre une copie de fichier de config
+```
+cp /etc/vsftpd.conf /etc/vsftpd.conf.orig
+```
+ouvrer le fichier de config sur nano
+```
+nano /etc/vsftpd.conf
+```
+
+Uncomment `local_enable` et checker si la valeur `YES` (To allow the local users to log in to the FTP server).
+```
+local_enable=YES
+```
+
+Uncomment `write_enable` et checker si la valeur `YES` (to allow the FTP write command).
+```
+write_enable=YES
+```
+
+chercher le parametre `chroot_local_user` et modifier les parametres pour que sa soit:
+```
+user_sub_token=$USER
+chroot_local_user=YES
+```
+uncomment `chroot_list_enable` et checker que la valeur `YES`
+```
+chroot_list_enable=YES
+```
+uncomment la line 
+```
+chroot_list_file=/etc/vsftpd.chroot_list
+```
+
+et ajouter les lignes:
+```
+local_root=/home/$USER/html
+allow_writeable_chroot=YES
+```
+
+uncomment la line 
+```
+ls_recurse_enable=YES
+```
+
+sauvegarder et quiter<br>
+
+redemerrer service
+```
+service vsftpd restart
+```
+##### Ajouter l'utilisateur `magento`
+```
+echo "magento" | sudo tee -a /etc/vsftpd.userlist
+```
+```
+cat /etc/vsftpd.userlist
+```
+> magento
+##### Tester
+	
 
 ### IV- Installation PHP & extensions
 
