@@ -271,7 +271,7 @@ apt-get remove apache2
 
 netoyage total
 ```
-apt-get purge apache2 apache2-utils apache2.2-bin apache2-common
+apt-get purge apache2
 ```
 
 ### V- Installation et configuration du PHP-FPM (<a href="https://www.php.net/manual/en/install.fpm.php ">FastCGI Process Manager</a>)
@@ -313,6 +313,19 @@ service php7.2-fpm start
 	
 
 ### VI- Installation Composer
+
+installation
+```
+curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+```
+
+> All settings correct for using Composer<br>Downloading...<br><br>Composer (version 1.10.5) successfully installed to: /usr/local/bin/composer<br>Use it: php /usr/local/bin/composer
+
+```
+composer --version
+```
+
+> Do not run Composer as root/super user! See https://getcomposer.org/root for details<br>Composer version 1.10.5 2020-04-10 11:44:22
 
 ### VII- Installation web server: nginx
 
