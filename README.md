@@ -35,7 +35,7 @@ adduser magento
 4.3 Cliqur sur <b>Access Keys</b> (tab Marketplace).<br>
 ![Image description](docs/static/1.png)<br>
 4.4 Cliqur sur <b>Create A New Access Key</b> (Verrifier que vous etes toujours sur tab magento 2).<br>
-4.5 Ecrivez un nom de votre cle puis OK (Verrifier que vous etes toujours sur tab magento 2).<br>
+4.5 Ecrivez un nom de votre cle puis OK.<br>
 4.6 Gardez les <b>Public Key</b> et <b>Private Key</b>
 
 5. installation zip
