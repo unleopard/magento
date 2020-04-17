@@ -147,10 +147,83 @@ mkdir /etc/ssl/private
 ```
 self-signed SSL:
 ```
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/vsftpd.key -out /etc/ssl/certs/vsftpd.crt
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ssl-cert-snakeoil.key -out /etc/ssl/certs/ssl-cert-snakeoil.pem
 ```
 > *Output*<br>Generating a 2048 bit RSA private key<br>...........................................................................................+++++<br>..................................+++++<br>writing new private key to '/etc/ssl/private/vsftpd.pem'<br>-----<br>You are about to be asked to enter information that will be incorporated<br>into your certificate request.<br>What you are about to enter is what is called a Distinguished Name or a DN.<br>There are quite a few fields but you can leave some blank<br>For some fields there will be a default value,<br>If you enter '.', the field will be left blank.<br>-----<br>Country Name (2 letter code) [AU]:MA<br>State or Province Name (full name) [Some-State]:Casablanca-Settat<br>Locality Name (eg, city) []:Casablanca<br>Organization Name (eg, company) [Internet Widgits Pty Ltd]:unleopard<br>Organizational Unit Name (eg, section) []:<br>Common Name (e.g. server FQDN or YOUR name) []: your_IP_address<br>Email Address []:<br>
-	
+
+update `vsftpd.conf`
+```
+nano /etc/vsftpd.conf
+```
+
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/vsftpd.key -out /etc/ssl/certs/vsftpd.crt
+
+rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
+rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
+
+Change `ssl_enable` to YES:
+```
+ssl_enable=YES
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+After that, add the following lines to explicitly deny anonymous connections over SSL and to require SSL for both data transfer and logins:
+```
+allow_anon_ssl=NO
+force_local_data_ssl=YES
+force_local_logins_ssl=YES
+```
+
+After this we’ll configure the server to use TLS, the preferred successor to SSL by adding the following lines:
+```
+ssl_tlsv1=YES
+ssl_sslv2=NO
+ssl_sslv3=NO
+```
+
+Finally, we will add two more options. First, we will not require SSL reuse because it can break many FTP clients. We will require “high” encryption cipher suites, which currently means key lengths equal to or greater than 128 bits:
+```
+require_ssl_reuse=NO
+ssl_ciphers=HIGH
+```
+
+When you’re done, save and close the file.<br>
+
+Now, we need to restart the server for the changes to take effect:
+```
+systemctl restart vsftpd
+```
+
+
+
+
+
+
+
+
+
+
 
 ### IV- Installation PHP & extensions
 
