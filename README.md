@@ -119,7 +119,7 @@ echo "magento" | sudo tee -a /etc/vsftpd.userlist
 ```
 cat /etc/vsftpd.userlist
 ```
-> magento
+> * *output* *<br>magento
 ##### Tester
 	
 
