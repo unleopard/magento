@@ -361,12 +361,10 @@ ufw allow 80/tcp
 ufw allow 443/tcp
 ```
 
-
-
-
-
-
-
+status du firewall
+```
+ufw status
+```
 
 
 ### VIII- Installation web server: nginx
