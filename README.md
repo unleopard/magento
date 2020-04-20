@@ -432,7 +432,7 @@ chown -R :www-data .
 chmod u+x bin/magento
 ```
 
-#### update nginx
+#### creation nouveau site sur nginx
 creation dossier site aviables
 ```
 mkdir /etc/nginx/sites-available/ && cd /etc/nginx/sites-available/
@@ -441,7 +441,22 @@ mkdir /etc/nginx/sites-available/ && cd /etc/nginx/sites-available/
 ```
 nano magento
 ```
-> put<br>upstream fastcgi_backend {<br>server unix:/run/php/php7.2-fpm.sock;<br>}<br><br>server {<br>listen 80;<br>server_name localhost;<br>set $MAGE_ROOT /home/magento/html;<br>include /home/magento/html/nginx.conf.sample;<br>}<br>
+
+
+
+#### configuration nginx
+
+backup de fichier de config
+```
+cd /etc/nginx/conf.d
+cp default.conf default.back
+```
+ouvrer `default.conf`  pour modification
+```update
+echo "" > default.conf
+nano default.conf
+```
+> *put*<br>upstream fastcgi_backend {<br>	server unix:/run/php/php7.2-fpm.sock;<br>}<br><br>server {<br>	listen 80;<br>	server_name localhost;<br>	set $MAGE_ROOT /home/magento/html;<br>	include /home/magento/html/nginx.conf.sample;<br>}<br>
 
 
 
