@@ -416,10 +416,24 @@ GRANT ALL PRIVILEGES ON magento.* TO 'magento'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-### X- Installation PhpMyAdmin
+### X- Installation Magento
+positionner sur le dossier
+```
+cd /home/magento/html
+```
+modifier les permissions
+```
+find var generated vendor pub/static pub/media app/etc -type f -exec chmod g+w {} +
+find var generated vendor pub/static pub/media app/etc -type d -exec chmod g+ws {} +
+chown -R :www-data .
+chmod u+x bin/magento
+```
 
-### XI- Installation Java
 
-### XII- Installation elasticsearch
+### XI- Installation PhpMyAdmin
 
-### XIII- Installation Magento
+### XII- Installation Java
+
+### XIII- Installation elasticsearch
+
+
