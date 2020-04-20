@@ -432,31 +432,42 @@ chown -R :www-data .
 chmod u+x bin/magento
 ```
 
-#### creation nouveau site sur nginx
-creation dossier site aviables
-```
-mkdir /etc/nginx/sites-available/ && cd /etc/nginx/sites-available/
-```
-
-```
-nano magento
-```
-
-
-
 #### configuration nginx
 
-backup de fichier de config
+user  www-data;
+
+backup des fichier de config
 ```
-cd /etc/nginx/conf.d
-cp default.conf default.back
+cp /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.back
+cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf-back
 ```
+
+```
+nano /etc/nginx/nginx.conf
+```
+remplacer la premiere ligne
+```
+user  nginx;
+```
+par
+```
+user  www-data;
+```
+`sauvegarder` et `quiter`
+
+
+vider le contenu de `default.conf`
+```
+echo "" > /etc/nginx/conf.d/default.conf
+```
+
 ouvrer `default.conf`  pour modification
-```update
-echo "" > default.conf
-nano default.conf
 ```
-> *put*<br>upstream fastcgi_backend {<br>	server unix:/run/php/php7.2-fpm.sock;<br>}<br><br>server {<br>	listen 80;<br>	server_name localhost;<br>	set $MAGE_ROOT /home/magento/html;<br>	include /home/magento/html/nginx.conf.sample;<br>}<br>
+nano /etc/nginx/conf.d/default.conf
+```
+
+> *put*<br>upstream fastcgi_backend {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server unix:/run/php/php7.2-fpm.sock;<br>}<br><br>server {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listen 80;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server_name localhost;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set $MAGE_ROOT /home/magento/html;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include /home/magento/html/nginx.conf.sample;<br>}<br>
+
 
 
 
