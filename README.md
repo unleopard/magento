@@ -8,6 +8,7 @@
 2. web server: Nginx v1.17
 3. Mysql: mysql server v14
 4. Magento v2.3.2
+5. generator password: https://www.lastpass.com/password-generator
 
 
  
@@ -366,10 +367,54 @@ status du firewall
 ufw status
 ```
 
+si la resultat:
+> Status: inactive
+
+demarrer firewall
+```
+ufw enable
+```
 
 ### VIII- Installation web server: nginx
 
 ### IX- Installation MySql Server
+
+
+
+#### installation
+
+installer mysql server
+```
+apt install mysql-server
+```
+
+Améliorez la sécurité de votre mysql server
+```
+mysql_secure_installation
+```
+
+redemarrer service mysql
+```
+systemctl restart mysql.service
+```
+
+#### Configuration
+
+
+#### Compte 
+
+ouvrer service mysql
+```
+mysql
+```
+> *output* <br>mysql>
+
+creation nouveau compte mysql
+```
+CREATE USER 'magento'@'localhost' IDENTIFIED BY 'your-password';
+GRANT ALL PRIVILEGES ON magento.* TO 'magento'@'localhost';
+FLUSH PRIVILEGES;
+```
 
 ### X- Installation PhpMyAdmin
 
