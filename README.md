@@ -416,6 +416,12 @@ GRANT ALL PRIVILEGES ON magento.* TO 'magento'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
+creation de la  base de donnees `magento`
+```
+CREATE DATABASE magento;
+```
+> *output* <br>Query OK, 1 row affected (0.00 sec)
+
 ### X- Installation Magento
 
 #### permission
@@ -468,6 +474,15 @@ nano /etc/nginx/conf.d/default.conf
 
 > *put*<br>upstream fastcgi_backend {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server unix:/run/php/php7.2-fpm.sock;<br>}<br><br>server {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;listen 80;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server_name localhost;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;set $MAGE_ROOT /home/magento/html;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include /home/magento/html/nginx.conf.sample;<br>}<br>
 
+tester la configuration
+```
+nginx -t
+```
+
+redemarrer `nginx`
+```
+service nginx reload
+```
 
 
 
