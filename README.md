@@ -1,7 +1,7 @@
 # Installation magento 2
 
 ### I. Intro
-
+![](https://img.shields.io/github/license/HeidiSQL/HeidiSQL.svg?style=flat)
 #### 1.1- Requeierement:
 
 1. OS: Linux Ubuntu v18
@@ -166,29 +166,6 @@ Change `ssl_enable` to YES:
 ```
 ssl_enable=YES
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 After that, add the following lines to explicitly deny anonymous connections over SSL and to require SSL for both data transfer and logins:
 ```
 allow_anon_ssl=NO
@@ -215,16 +192,6 @@ Now, we need to restart the server for the changes to take effect:
 ```
 systemctl restart vsftpd
 ```
-
-
-
-
-
-
-
-
-
-
 
 ### IV- Installation PHP & extensions
 
@@ -375,7 +342,31 @@ demarrer firewall
 ufw enable
 ```
 
-### VIII- Installation web server: nginx
+### VIII- Installation web server: `nginx`
+
+Importer la clé de signature du package et ajoutez-la à `apt`:
+```
+cd /tmp/ && wget http://nginx.org/keys/nginx_signing.key
+sudo apt-key add nginx_signing.key
+sudo sh -c "echo 'deb http://nginx.org/packages/mainline/ubuntu/ '$(lsb_release -cs)' nginx' > /etc/apt/sources.list.d/Nginx.list"
+```
+installation:
+```
+sudo apt-get update
+sudo apt-get install nginx
+```
+
+afficher la version:
+```
+nginx -v
+```
+> *Output*<br>nginx version: nginx/1.17.10
+
+Assurez-vous que NGINX est en cours d'exécution et activé pour démarrer automatiquement lors des redémarrages:
+```
+sudo systemctl start nginx
+sudo systemctl enable nginx
+```
 
 ### IX- Installation MySql Server
 
@@ -491,6 +482,6 @@ service nginx reload
 
 ### XII- Installation Java
 
-### XIII- Installation elasticsearch
+### XIII- Installation ElasticEearch
 
-
+### XIX- Installation Certbot
