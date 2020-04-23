@@ -72,55 +72,6 @@ ouvrer le fichier de config sur nano
 nano /etc/vsftpd.conf
 ```
 
-Uncomment `local_enable` et checker si la valeur `YES` (To allow the local users to log in to the FTP server).
-```
-local_enable=YES
-```
-
-Uncomment `write_enable` et checker si la valeur `YES` (to allow the FTP write command).
-```
-write_enable=YES
-```
-
-chercher le parametre `chroot_local_user` et modifier les parametres pour que sa soit:
-```
-user_sub_token=$USER
-chroot_local_user=YES
-```
-uncomment `chroot_list_enable` et checker que la valeur `YES`
-```
-chroot_list_enable=YES
-```
-uncomment la line 
-```
-chroot_list_file=/etc/vsftpd.chroot_list
-```
-
-et ajouter les lignes:
-```
-local_root=/home/$USER/html
-allow_writeable_chroot=YES
-```
-
-uncomment la line 
-```
-ls_recurse_enable=YES
-```
-
-sauvegarder et quiter<br>
-
-redemerrer service
-```
-service vsftpd restart
-```
-##### Ajouter l'utilisateur `magento`
-```
-echo "magento" | sudo tee -a /etc/vsftpd.userlist
-```
-```
-cat /etc/vsftpd.userlist
-```
-> *output*<br>magento
 
 ##### Tester
 ```
@@ -142,51 +93,7 @@ quiter la session
 bye
 ```
 ##### securite
-Prepare a place for the SSL key to live:
-```
-mkdir /etc/ssl/private
-```
-self-signed SSL:
-```
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ssl-cert-snakeoil.key -out /etc/ssl/certs/ssl-cert-snakeoil.pem
-```
-> *Output*<br>Generating a 2048 bit RSA private key<br>...........................................................................................+++++<br>..................................+++++<br>writing new private key to '/etc/ssl/private/vsftpd.pem'<br>-----<br>You are about to be asked to enter information that will be incorporated<br>into your certificate request.<br>What you are about to enter is what is called a Distinguished Name or a DN.<br>There are quite a few fields but you can leave some blank<br>For some fields there will be a default value,<br>If you enter '.', the field will be left blank.<br>-----<br>Country Name (2 letter code) [AU]:MA<br>State or Province Name (full name) [Some-State]:Casablanca-Settat<br>Locality Name (eg, city) []:Casablanca<br>Organization Name (eg, company) [Internet Widgits Pty Ltd]:unleopard<br>Organizational Unit Name (eg, section) []:<br>Common Name (e.g. server FQDN or YOUR name) []: your_IP_address<br>Email Address []:<br>
 
-update `vsftpd.conf`
-```
-nano /etc/vsftpd.conf
-```
-
-openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/vsftpd.key -out /etc/ssl/certs/vsftpd.crt
-
-rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem
-rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key
-
-Change `ssl_enable` to YES:
-```
-ssl_enable=YES
-```
-After that, add the following lines to explicitly deny anonymous connections over SSL and to require SSL for both data transfer and logins:
-```
-allow_anon_ssl=NO
-force_local_data_ssl=YES
-force_local_logins_ssl=YES
-```
-
-After this we’ll configure the server to use TLS, the preferred successor to SSL by adding the following lines:
-```
-ssl_tlsv1=YES
-ssl_sslv2=NO
-ssl_sslv3=NO
-```
-
-Finally, we will add two more options. First, we will not require SSL reuse because it can break many FTP clients. We will require “high” encryption cipher suites, which currently means key lengths equal to or greater than 128 bits:
-```
-require_ssl_reuse=NO
-ssl_ciphers=HIGH
-```
-
-When you’re done, save and close the file.<br>
 
 Now, we need to restart the server for the changes to take effect:
 ```
@@ -371,7 +278,6 @@ sudo systemctl enable nginx
 ### IX- Installation MySql Server
 
 
-
 #### installation
 
 installer mysql server
@@ -485,3 +391,27 @@ service nginx reload
 ### XIII- Installation ElasticEearch
 
 ### XIX- Installation Certbot
+
+
+9.1. Add Certbot PPA
+You'll need to add the `Certbot PPA` to your list of repositories. To do so, run the following commands on the command line on the machine:
+```
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt-repository universe
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+```
+
+9.2. Install Certbot
+Run this command on the command line on the machine to install Certbot.
+```
+sudo apt-get install certbot python-certbot-nginx
+```
+
+9.3. Choose how you'd like to run Certbot
+
+Run this command to get a certificate and have Certbot edit your Nginx configuration automatically to serve it, turning on HTTPS access in a single step.
+```
+sudo certbot --nginx
+```
