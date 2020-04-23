@@ -390,7 +390,7 @@ service nginx reload
 
 ### XIII- Installation ElasticEearch
 
-### XIX- Installation Certbot <a href="https://marketplace.magento.com" target="_blank">Certbot</a>.
+### XIX- Installation <a href="https://certbot.eff.org/" target="_blank">Certbot</a>.
 
 
 9.1. Add Certbot PPA
