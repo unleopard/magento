@@ -43,7 +43,7 @@ chown -R magento:magento /home/magento/html
 4.1 Connecter (Inscrit) sur <a href="https://marketplace.magento.com" target="_blank"><b>Magento Marketplace</b></a>.<br>
 4.2 Allez sur <b>votre compte</b> (Haut droit) et choisi <b>My Profile</b>.<br>
 4.3 Cliqur sur <b>Access Keys</b> (tab Marketplace).<br>
-![Image description](docs/static/1.png)<br>
+![Image description](docs/static/keys.png)<br>
 4.4 Cliqur sur <b>Create A New Access Key</b> (Verrifier que vous etes toujours sur tab magento 2).<br>
 4.5 Ecrivez un nom de votre cle puis OK.<br>
 4.6 Gardez les <b>Public Key</b> et <b>Private Key</b>
