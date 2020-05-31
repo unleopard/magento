@@ -1,7 +1,7 @@
 # Installation magento 2
 
 ### I. Intro
-![](https://img.shields.io/github/license/HeidiSQL/HeidiSQL.svg?style=flat)
+![](https://img.shields.io/github/license/unleopard/magento?style=flat-square)
 #### 1.1- Requeierement:
 
 1. OS: Linux Ubuntu v18
