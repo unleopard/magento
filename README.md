@@ -429,3 +429,39 @@ Run this command to get a certificate and have Certbot edit your Nginx configura
 ```
 sudo certbot --nginx
 ```
+
+
+
+### XX- Installation nodejs.
+
+update system
+```
+sudo apt update && apt upgrade
+```
+
+install cURL if not exists
+```
+sudo apt install -y curl
+```
+
+import v16 of nodejs, and add it to apt sources
+```
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+```
+
+update
+```
+sudo apt update
+```
+
+install nodejs
+```
+apt install -y nodejs
+```
+
+check version
+```
+node --version
+```
+
+
